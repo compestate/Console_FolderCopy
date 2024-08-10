@@ -15,6 +15,7 @@ namespace Console_FolderCopy
     {
         static void Main()
         {
+            //Directory.Move("D:\\PHB\\Docs1", "D:\\PHB\\Docs2");
             string connectionString = ConfigurationManager.AppSettings["dbcon"];
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -45,17 +46,22 @@ namespace Console_FolderCopy
                                 continue;
                             }
 
-                            if (!Directory.Exists(targetFolder))
-                            {
-                                Directory.CreateDirectory(targetFolder);
-                            }
-
                             if (action.Equals("Copy", StringComparison.OrdinalIgnoreCase))
                             {
+                                if (!Directory.Exists(targetFolder))
+                                {
+                                    Directory.CreateDirectory(targetFolder);
+                                }
+
                                 CopyDirectory(sourceFolder, targetFolder);
                             }
                             else if (action.Equals("Move", StringComparison.OrdinalIgnoreCase))
                             {
+                                if (Directory.Exists(targetFolder))
+                                {
+                                    Directory.Delete(targetFolder, true);
+                                }
+
                                 MoveDirectory(sourceFolder, targetFolder);
                             }
                             else
