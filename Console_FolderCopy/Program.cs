@@ -112,7 +112,7 @@ namespace Console_FolderCopy
             //    File.Move(file, destFile);
             //}
 
-            Directory.Delete(sourceDir, true);
+            //Directory.Delete(sourceDir, true);
         }
 
         static void UpdateStatus(SqlConnection connection, int id, string status)
