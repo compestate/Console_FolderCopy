@@ -93,17 +93,18 @@ namespace Console_FolderCopy
 
         static void MoveDirectory(string sourceDir, string targetDir)
         {
-            foreach (string directory in Directory.GetDirectories(sourceDir))
-            {
-                string destDir = Path.Combine(targetDir, Path.GetFileName(directory));
-                MoveDirectory(directory, destDir);
-            }
+            Directory.Move(sourceDir, targetDir);
+            //foreach (string directory in Directory.GetDirectories(sourceDir))
+            //{
+            //    string destDir = Path.Combine(targetDir, Path.GetFileName(directory));
+            //    MoveDirectory(directory, destDir);
+            //}
 
-            foreach (string file in Directory.GetFiles(sourceDir))
-            {
-                string destFile = Path.Combine(targetDir, Path.GetFileName(file));
-                File.Move(file, destFile);
-            }
+            //foreach (string file in Directory.GetFiles(sourceDir))
+            //{
+            //    string destFile = Path.Combine(targetDir, Path.GetFileName(file));
+            //    File.Move(file, destFile);
+            //}
 
             Directory.Delete(sourceDir, true);
         }
